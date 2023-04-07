@@ -1,0 +1,162 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <link rel="stylesheet" href="style.css">
+    <title>Battaglia Navale</title>
+</head>
+<body>
+<div class="all-homepage">
+    <div class="hero">
+        <div class="opacity"></div>
+        <h1><b>Battaglia Navale</b></h1>
+        <div class="start">
+            <form action="" method="post">
+                <div>
+                    <!--  <h3><p>Preparati per la battaglia</p></h3> -->
+                    <input type="text" name="username"placeholder="Username">
+                    <input type="password" name="password" placeholder="Password"></div>
+
+                <input type="submit" value="START" id="button"></input>
+                <button><a href="registration.html">Registration</a></button>
+
+            </form>
+        </div>
+    </div>
+</div>
+<script>
+    function validate() {
+        var username = document.getElementById("username").value;
+        var password = document.getElementById("password").value;
+
+        // Controllo sull'username e la password
+        if (username == "" || password == "") {
+            alert("Inserisci l'username e la password");
+            return false;
+        } else if (username.length < 5 || password.length < 5) {
+            alert("L'username e la password devono essere almeno di 5 caratteri");
+            return false;
+        }
+
+        return true;
+    }
+    const form = document.querySelector('form');
+    form.addEventListener('submit', (event) => {
+        event.preventDefault(); // previene il comportamento predefinito del form
+
+        const username = form.elements.username.value;
+        const password = form.elements.password.value;
+
+        fetch('http://localhost:8081/login', {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json'
+            },
+            body: JSON.stringify({username, password})
+
+        })
+
+            .then(response => {
+                if (response.ok) {
+                    return response.json();
+                }else if(response.status === 400){
+                    alert('Username o password errati')
+                }else{
+                    throw new Error('Errore nella richiesta POST');
+                }
+            })
+            .then(data => {
+                console.log(data);
+                if (data.success) {
+                    window.location.href = 'menu.html'; // reindirizza l'utente alla pagina di successo
+                } else {
+                    // mostra un messaggio di errore all'utente
+                    alert('Quealcosa è andato storto :/');
+                }
+            })
+            .catch(error => console.error(error));
+    })
+
+</script>
+</body>
+</html>
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <link rel="stylesheet" href="style.css">
+    <title>Battaglia Navale</title>
+</head>
+<body>
+<div class="all-homepage">
+    <div class="hero">
+        <div class="opacity"></div>
+        <h1><b>Battaglia Navale</b></h1>
+        <div class="start">
+            <form action="" method="post">
+                <div>
+                    <!--  <h3><p>Preparati per la battaglia</p></h3> -->
+                    <input type="text" name="username"placeholder="Username">
+                    <input type="password" name="password" placeholder="Password"></div>
+
+                <input type="submit" value="START" id="button"></input>
+                <button><a href="registration.html">Registration</a></button>
+
+            </form>
+        </div>
+    </div>
+</div>
+<script>
+    function validate() {
+        var username = document.getElementById("username").value;
+        var password = document.getElementById("password").value;
+
+        // Controllo sull'username e la password
+        if (username == "" || password == "") {
+            alert("Inserisci l'username e la password");
+            return false;
+        } else if (username.length < 5 || password.length < 5) {
+            alert("L'username e la password devono essere almeno di 5 caratteri");
+            return false;
+        }
+
+        return true;
+    }
+    const form = document.querySelector('form');
+    form.addEventListener('submit', (event) => {
+        event.preventDefault(); // previene il comportamento predefinito del form
+
+        const username = form.elements.username.value;
+        const password = form.elements.password.value;
+
+        fetch('http://localhost:8081/login', {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json'
+            },
+            body: JSON.stringify({username, password})
+
+        })
+
+            .then(response => {
+                if (response.ok) {
+                    return response.json();
+                }else if(response.status === 400){
+                    alert('Username o password errati')
+                }else{
+                    throw new Error('Errore nella richiesta POST');
+                }
+            })
+            .then(data => {
+                console.log(data);
+                if (data.success) {
+                    window.location.href = 'menu.html'; // reindirizza l'utente alla pagina di successo
+                } else {
+                    // mostra un messaggio di errore all'utente
+                    alert('Quealcosa è andato storto :/');
+                }
+            })
+            .catch(error => console.error(error));
+    })
+
+</script>
+</body>
+</html>
